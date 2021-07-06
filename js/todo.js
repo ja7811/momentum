@@ -33,8 +33,9 @@ function ToDo(text) {
 }
 
 function handleAccomplishClick(event) {
-    const targetID = event.target.parentElement.parentElement.id;
-    // const text = document.querySelector(`li#${targetID} span.text`);
+    const targetList = event.target.parentElement.parentElement;
+    console.log(targetList);
+    const targetID = targetList.id;
     const text = document.getElementById(`${targetID}`).querySelector('.text');
     const toDoObj = new ToDo(text.innerText);
     toDoObj.id = parseInt(targetID);
@@ -47,27 +48,47 @@ function handleAccomplishClick(event) {
     saveToDos();
 }
 
+function handleFavouriteClick(event) {
+    const targetList = event.target.parentElement.parentElement;
+    console.log(targetList);
+    const targetID = event.target.parentElement.parentElement.id;
+    const text = document.getElementById(`${targetID}`).querySelector('.text');
+    const toDoObj = new ToDo(text.innerText);
+    toDoObj.id = parseInt(targetID);
+    toDoObj.isAccomplished = false;
+    if (!targetList.classList.contains(FAVOURITE_CLASS)) {
+        toDoObj.isFavourite = true;
+        FavouriteToDos.push(toDoObj);
+        ToDos = ToDos.filter((element) => {
+            return element.id !== parseInt(targetID)
+        });
+    }
+    else {
+        toDoObj.isFavourite = false;
+        ToDos.push(toDoObj);
+        FavouriteToDos = FavouriteToDos.filter((element) => {
+                return element.id !== parseInt(targetID)
+            });
+    }
+    removeAllToDos();
+    paintAllToDos();
+    saveToDos();
+}
+
 function removeAllToDos() {
     const ul = document.querySelector("ul#todo-list");
-    console.log(ul);
     ul.innerHTML = "";
 }
 
 function paintAllToDos() {
-    FavouriteToDos.forEach(paintToDo);
-    ToDos.forEach(paintToDo);
     AccomplishedToDos.forEach(paintToDo);
+    ToDos.forEach(paintToDo);
+    FavouriteToDos.forEach(paintToDo);
 }
 
-function handleToDoClick(event) {
-    // todo의 text 변경
-    console.log(event);
-    const li = event.target.parentElement;
-    if (li.localName === 'li') {
-        editToDo(li)
-    } else {
-        console.log("complete the log first!");
-    }
+function repaintAllToDos() {
+    removeAllToDos();
+    paintAllToDos();
 }
 
 function saveToDos() {
@@ -82,29 +103,23 @@ function saveToDos() {
 function deleteTodo(event) {
     const targetList = event.target.parentElement.parentElement;
     const targetID = targetList.id;
-    targetList.remove();
-    console.log(targetList);
-    console.log("deleting ", targetID);
-
     if (targetList.classList.contains(ACCOMPLISHED_CLASS)) {
-        console.log("deleting accomplished todo");
         AccomplishedToDos = AccomplishedToDos.filter((element) => {
             return element.id !== parseInt(targetID)
         });
         console.log(AccomplishedToDos);
     }
     else if (targetList.classList.contains(FAVOURITE_CLASS)) {
-        console.log("deleting favourite todo");
         FavouriteToDos = FavouriteToDos.filter((element) => {
             return element.id !== parseInt(targetID)
         })
     }
     else {
-        console.log("deleting normal todo");
         ToDos = ToDos.filter((element) => {
             return element.id !== parseInt(targetID)
         });
     }
+    targetList.remove();
     saveToDos();
 }
 
@@ -114,11 +129,13 @@ function paintToDo(toDoObj) {
     if (toDoObj.isAccomplished === true) {
         li.classList.add(ACCOMPLISHED_CLASS);
     }
+    if (toDoObj.isFavourite === true) {
+        li.classList.add(FAVOURITE_CLASS);
+    }
 
     const text = document.createElement("span");
     text.classList.add("text");
     text.innerHTML = toDoObj.text;
-    text.addEventListener("click", handleToDoClick);
 
     const rightHandButtons = document.createElement("span");
     rightHandButtons.classList.add("right-hand-buttons");
@@ -128,9 +145,17 @@ function paintToDo(toDoObj) {
 
     const favouriteButton = document.createElement("i");
     favouriteButton.id = "todo-favourite-button";
-    if (toDoObj.isAccomplished === true) favouriteButton.classList.add(fullIconClass);
-    else favouriteButton.classList.add(blankIconClass);
+    if (toDoObj.isFavourite === true) {
+        favouriteButton.classList.add(fullIconClass);
+        li.classList.add(FAVOURITE_CLASS);
+    }
+    else {
+        favouriteButton.classList.add(blankIconClass);
+    }
     favouriteButton.classList.add(starIconClass);
+    if (toDoObj.isAccomplished !== true) {
+        favouriteButton.addEventListener("click", handleFavouriteClick);
+    }
 
     const accomplishedButton = document.createElement("i");
     accomplishedButton.id = "todo-accomplished-button";
@@ -159,8 +184,8 @@ function handleToDoSubmit(event) {
     const text = toDoInput.value;
     toDoInput.value = "";
     const newToDo = new ToDo(text);
-    paintToDo(newToDo);
     ToDos.push(newToDo);
+    repaintAllToDos();
     saveToDos();
 }
 
