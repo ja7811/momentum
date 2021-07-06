@@ -14,6 +14,9 @@ function handleLogin(event) {
 function paintGreeting(username) {
     greeting.classList.remove(CLASS_MAKE_HIDDEN);
     greeting.innerHTML = `Hello, ${username}!`;
+    document.querySelector("h2#clock").classList.remove(CLASS_MAKE_HIDDEN);
+    document.querySelector("form#todo-form").classList.remove(CLASS_MAKE_HIDDEN);
+    document.querySelector("ul#todo-list").classList.remove(CLASS_MAKE_HIDDEN);
 }
 
 
