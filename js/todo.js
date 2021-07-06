@@ -22,18 +22,22 @@ function saveToDos() {
 }
 
 function deleteTodo(event) {
-    const targetID = event.target.parentElement.id;
-    event.target.parentElement.remove();
+    const targetID = event.target.parentElement.parentElement.id;
+    event.target.parentElement.parentElement.remove();
     ToDos = ToDos.filter((element) => { return element.id !== parseInt(targetID) });
     saveToDos();
 }
 
 function paintToDo(toDoObj) {
     const li = document.createElement("li");
-    li.className = "each-todo";
     li.id = toDoObj.id;
     const text = document.createElement("span");
+    text.classList.add("text");
     text.innerHTML = toDoObj.text;
+    const rightHandButtons = document.createElement("span");
+    rightHandButtons.classList.add("right-hand-buttons");
+    const leftHandButtons = document.createElement("span");
+    leftHandButtons.classList.add("left-hand-buttons");
     const favouriteButton = document.createElement("button");
     favouriteButton.id = "todo-favourite-button";
     favouriteButton.innerHTML = "❤";
@@ -47,11 +51,13 @@ function paintToDo(toDoObj) {
     deleteButton.id = "todo-delete-button";
     deleteButton.innerText = "❌";
     deleteButton.addEventListener("click", deleteTodo);
-    li.appendChild(favouriteButton);
+    leftHandButtons.appendChild(favouriteButton);
+    li.appendChild(leftHandButtons);
     li.appendChild(text);
-    li.appendChild(editButton);
-    li.appendChild(accomplishedButton);
-    li.appendChild(deleteButton);
+    rightHandButtons.appendChild(editButton);
+    rightHandButtons.appendChild(accomplishedButton);
+    rightHandButtons.appendChild(deleteButton);
+    li.appendChild(rightHandButtons);
     toDoList.append(li);
 }
 
