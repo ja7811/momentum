@@ -19,8 +19,8 @@ function OnGeoSuccess(geoLocationData) {
             const city = data.name;
             const weather = data.weather[0].main
             const temperature = data.main.temp;
-            weatherBoxCity.innerHTML = `${city}, `;
-            weatherBoxWeather.innerHTML = `${weather}, ${temperature}°C`;
+            weatherBoxCity.innerHTML = `@${city}, `;
+            weatherBoxWeather.innerHTML = `${temperature}°C ${weather} `;
         }
     });
 }
