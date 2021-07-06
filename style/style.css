@@ -76,13 +76,12 @@
     margin-top: 15px;
     color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
 }
 
 #todo-list li {
     border-radius: 5px;
-    /* border : 1px solid black; */
     font-size: 1rem;
     width: 450px;
     height: 30px;
@@ -97,8 +96,8 @@
 
 #todo-list li .left-hand-buttons, #todo-list li .right-hand-buttons {
     flex-basis : 50px;
-    flex-shrink: 0;
-    font-size: 20px;
+    flex-shrink : 0;
+    font-size : 20px;
 }
 
 #todo-list li .right-hand-buttons{
@@ -114,6 +113,15 @@
 #todo-delete-button, #todo-accomplished-button {
     font-size: 20px;
 }
+
 #todo-delete-button {
     margin-left: 5px;
+}
+
+.accomplished {
+    color:darkgrey;
+}
+
+.accomplished #todo-accomplished-button {
+    display: none;
 }
