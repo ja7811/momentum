@@ -9,13 +9,18 @@ function OnGeoSuccess(geoLocationData) {
     const longitude = geoLocationData.coords.longitude
     const latitude = geoLocationData.coords.latitude
     const API_KEY = "86c28944ecf6f3131633ba60c56380ee";
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
-    fetch(url).then((response) => {
-        if (response.cod !== 200) {
-            console.log("weather api fetch failed!");
-            weatherBoxWeather.innerHTML = "Weather api fetch failed!";
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+    fetch(url).then((response) => response.json()).then(data => {
+        if (data.cod !== 200) {
+            // fetch failed
+            weatherBoxWeather.innerHTML = "Failed loading weather.";
         } else {
-            console.log(response);
+            // fetch success
+            const city = data.name;
+            const weather = data.weather[0].main
+            const temperature = data.main.temp;
+            weatherBoxCity.innerHTML = `${city}, `;
+            weatherBoxWeather.innerHTML = `${weather}, ${temperature}°C`;
         }
     });
 }
