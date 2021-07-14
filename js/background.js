@@ -12,10 +12,8 @@ const images = [
 ]
 
 const randomIdx = Math.floor(Math.random() * images.length);
-// const background = document.querySelector(".background");
-// console.log(background);
-// background.style.background = `url('./img/${images[randomIdx]}')`
 const img = document.createElement("img");
 img.classList.add("background");
 img.src = `img/${images[randomIdx]}`;
 document.body.appendChild(img);
+
