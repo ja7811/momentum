@@ -2,7 +2,7 @@
     display: none;
 }
 
-body {
+body, input {
     font-family: 'Roboto', 'Noto Sans KR', sans-serif;
 }
 
