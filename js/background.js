@@ -12,6 +12,12 @@ const images = [
 const randomIdx = Math.floor(Math.random() * images.length);
 const img = document.createElement("img");
 img.classList.add("background");
-img.src = `img/${images[randomIdx]}`;
+img.src = `img/default/${images[randomIdx]}`;
 document.body.appendChild(img);
 
+// Clouds
+// Rain
+// Snow
+// Extreme
+// Clear
+// Mist

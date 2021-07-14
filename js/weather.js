@@ -29,4 +29,3 @@ function OnGeoFail(geoLocationData) {
     console.log("No weather for you!");
     weatherBoxWeather.innerHTML = "Weather api fetch failed!";
 }
-
