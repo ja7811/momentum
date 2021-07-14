@@ -12,5 +12,3 @@ function updateClock() {
 
 updateClock();
 setInterval(updateClock, 60000);
-
-// export { hours, minutes };
