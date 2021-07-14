@@ -2,6 +2,7 @@ navigator.geolocation.getCurrentPosition(OnGeoSuccess, OnGeoFail);
 const weatherBox = document.querySelector("#weather-box");
 const weatherBoxCity = weatherBox.querySelector("#weather-box-city");
 const weatherBoxWeather = weatherBox.querySelector("#weather-box-weather");
+let city = "", weather = "", temperature = "";
 
 weatherBoxWeather.innerHTML = "Loading Weather...";
 
@@ -16,9 +17,9 @@ function OnGeoSuccess(geoLocationData) {
             weatherBoxWeather.innerHTML = "Failed loading weather.";
         } else {
             // fetch success
-            const city = data.name;
-            const weather = data.weather[0].main
-            const temperature = data.main.temp;
+            city = data.name;
+            weather = data.weather[0].main
+            temperature = data.main.temp;
             weatherBoxCity.innerHTML = `@${city}, `;
             weatherBoxWeather.innerHTML = `${temperature}°C ${weather} `;
         }
