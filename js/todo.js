@@ -50,13 +50,13 @@ function handleAccomplishClick(event) {
 
 function handleFavouriteClick(event) {
     const targetList = event.target.parentElement.parentElement;
-    console.log(targetList);
     const targetID = event.target.parentElement.parentElement.id;
     const text = document.getElementById(`${targetID}`).querySelector('.text');
     const toDoObj = new ToDo(text.innerText);
     toDoObj.id = parseInt(targetID);
     toDoObj.isAccomplished = false;
     if (!targetList.classList.contains(FAVOURITE_CLASS)) {
+        // 즐겨찾기를 누른 경우
         toDoObj.isFavourite = true;
         FavouriteToDos.push(toDoObj);
         ToDos = ToDos.filter((element) => {
@@ -64,8 +64,9 @@ function handleFavouriteClick(event) {
         });
     }
     else {
+        // 즐겨찾기를 해제한 경우
         toDoObj.isFavourite = false;
-        ToDos.push(toDoObj);
+        ToDos.unshift(toDoObj);
         FavouriteToDos = FavouriteToDos.filter((element) => {
                 return element.id !== parseInt(targetID)
             });
