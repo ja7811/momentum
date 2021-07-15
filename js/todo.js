@@ -187,6 +187,14 @@ function paintToDo(toDoObj) {
 
 function handleToDoSubmit(event) {
     event.preventDefault();
+    // todo가 너무 많으면 skip
+    let todoCount = FavouriteToDos.length + ToDos.length + AccomplishedToDos.length;
+    if (todoCount >= 10) {
+        const warningMessage = document.querySelector("#todo-form #todo-warning");
+        warningMessage.classList.add("fade-in-and-out");
+        setTimeout(() => { warningMessage.classList.remove("fade-in-and-out"); }, 2000);
+        return;
+    }
     const text = toDoInput.value;
     toDoInput.value = "";
     const newToDo = new ToDo(text);
