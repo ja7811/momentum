@@ -81,9 +81,15 @@ function removeAllToDos() {
 }
 
 function paintAllToDos() {
-    AccomplishedToDos.forEach(paintToDo);
-    ToDos.forEach(paintToDo);
-    FavouriteToDos.forEach(paintToDo);
+    for (let i = AccomplishedToDos.length - 1; i >= 0; i--){
+        paintToDo(AccomplishedToDos[i]);
+    }
+    for (let i = ToDos.length - 1; i >= 0 ; i--){
+        paintToDo(ToDos[i]);
+    }
+    for (let i = FavouriteToDos.length - 1; i >= 0; i--){
+        paintToDo(FavouriteToDos[i]);
+    }
 }
 
 function repaintAllToDos() {
