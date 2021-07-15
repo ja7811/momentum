@@ -40,7 +40,12 @@
     </form>
     <h1 class="hidden" id="greeting"></h1>
     <form class="hidden" id="todo-form">
-        <input type="text" required placeholder="What's your goal today?">
+        <input 
+        type="text" 
+        required
+        placeholder="What's your goal today?"
+        maxlength="35">
+        <span id="todo-warning">Too many todos - delete some!</span>
     </form>
     <ul class="hidden" id="todo-list"> </ul>
     <script src="js/clock.js"></script>
