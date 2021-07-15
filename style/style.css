@@ -13,7 +13,7 @@ body, input {
     top: 0;
     left: 0;
     z-index: -1;
-    filter: brightness(60%);
+    filter: brightness(50%) grayscale(30%);
 }
 
 #weather-box {
