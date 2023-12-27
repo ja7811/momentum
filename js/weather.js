@@ -22,7 +22,7 @@ function OnGeoSuccess(geoLocationData) {
             temperature = data.main.temp;
             weatherBoxCity.innerHTML = `@${city}, `;
             weatherBoxWeather.innerHTML = `${temperature}°C ${weather} `;
-            setBackgroundByWeather(weather, temperature);
+            //setBackgroundByWeather(weather, temperature);
         }
     });
 }

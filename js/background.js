@@ -149,5 +149,5 @@ function setBackgroundByWeather(weather, temperature) {
 const randomIdx = Math.floor(Math.random() * defaultImages.length);
 const img = document.createElement("img");
 img.classList.add("background");
-// img.src = `img/default/${defaultImages[randomIdx]}`;
+img.src = `img/default/${defaultImages[randomIdx]}`;
 document.body.appendChild(img);
