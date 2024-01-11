@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- reset css -->
+    <link rel="stylesheet" href="style/reset.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">    <!-- stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="style/style.css">
+    <!-- font-awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+    <title>Momentum</title>
+</head>
+<body>
+    <div id="weather-box">
+        <span id="weather-box-city">
+        </span>
+        <span id="weather-box-weather">
+        </span>
+    </div>
+    <div class="clear"></div>
+    <h2 class="hidden" id="clock">00:00</h2>
+    <form class="hidden" id="login-form">
+        <h1>Hello,</h1>
+        <h2>Tell us your name</h2>
+        <input 
+            type="text" 
+            required 
+            maxlength="15" 
+            placeholder="What's your name?">
+    </form>
+    <h1 class="hidden" id="greeting"></h1>
+    <form class="hidden" id="todo-form">
+        <input 
+        type="text" 
+        required
+        placeholder="What's your goal today?"
+        maxlength="35">
+        <span id="todo-warning">Too many todos - delete some!</span>
+    </form>
+    <ul class="hidden" id="todo-list"> </ul>
+    <script src="js/clock.js"></script>
+    <script src="js/greetings.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/weather.js"></script>
+</body>
+</html>
